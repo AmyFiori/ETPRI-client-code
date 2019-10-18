@@ -1,0 +1,7 @@
+*.json
+*.html
+*.jpeg
+*.jpg
+*.ico
+**/Content/
+**/images/

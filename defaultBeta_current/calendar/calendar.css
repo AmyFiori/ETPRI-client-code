@@ -1,0 +1,102 @@
+/*
+Makes the calendar div a positioned element so that elements inside it can have absolute positioning;
+gives it a bottom margin so that the white calendar table doesn't butt up against the white footer
+*/
+.calendarDiv {
+	position:relative;
+	margin-bottom:20px;
+}
+
+/* Removes formatting from calendar buttons, reverting them to their default formatting */
+.calendarButton {
+  all:revert !important;
+}
+
+/* The button representing the currently-selected view of the calendar is highlighted in yellow */
+.selectedButton {
+	background-color:yellow !important;
+}
+
+/* The td cells themselves just contain a div - the 0 padding makes the div take up the whole cell */
+.month td {
+  padding: 0px;
+}
+
+/* Sets the size and font of the divs within cells within a calendar's month display (which contain all the actual data) */
+.month td>div {
+	width: 150px;
+	height: 150px;
+	font-weight: bold;
+	font-size:large;
+  overflow:auto;
+  padding:5px;
+}
+
+.weekHandle {
+  background-color: #999;
+}
+
+.month .weekHandle {
+  padding: 0px 5px;
+}
+
+/* The td cells themselves just contain a div - the 0 padding makes the div take up the whole cell */
+.year td {
+  padding:0px;
+}
+
+/* Sets the size and font of the divs within cells within a calendar's year display (which contain all the actual data) */
+.year td>div {
+	width:30px;
+	height: 30px;
+	font-weight: bold;
+	font-size: small;
+  padding:2px;
+}
+
+.year .weekHandle {
+  padding: 0px 3px;
+}
+
+/* Cells at the start or end of a month table which aren't actually part of that month get smaller, lighter text... */
+.month .wrongMonth {
+	font-size: medium;
+	font-weight: normal;
+	color: gray;
+}
+
+/* whether they're in a month display or a year display */
+.year .wrongMonth {
+	font-size: x-small;
+	font-weight: normal;
+	color: gray;
+}
+
+/* Font size for days in a week display */
+.weekDayCell {
+	font-size: 16px;
+}
+
+/* The current date (unless it's in the wrong month in a month display) is shown with red text rather than the usual black */
+.today {
+	color: red;
+}
+
+/* In month and year view, dates with an event have a light yellow background */
+.hasEvent {
+	background-color:#FFFFa0;
+}
+
+/* In day and week view, events are shown in a transparent yellow div */
+.event {
+	background-color:rgba(255,255,0,0.5);
+	overflow:auto;
+	border: 3px solid rgba(120,120,0,0.5);
+	box-sizing:border-box;
+	padding: 5px;
+}
+
+.event p {
+  padding:0px;
+  margin:0px
+}

@@ -1,0 +1,540 @@
+/*******************************************************************************
+OVERALL FORMATTING
+*******************************************************************************/
+
+/*
+Makes sizing of the html element include border and padding (this will be inherited),
+and sets the default font size for the document
+*/
+html {
+  box-sizing:border-box;
+  font-size:62.5%
+}
+
+/*
+Makes all elements inherit the box-sizing attribute from their parents (so they all have the border-box setting by default,
+but if you change an element's box-sizing, its children's will also change)
+*/
+* {
+  box-sizing:inherit
+}
+
+/*
+Formats the whole body, removing the margin so that the content touches the top and bottom of the page
+and setting the default font size, font family and height of a line of text
+*/
+body {
+  margin:0;
+  font-family:droid sans,sans-serif;
+  font-size:16px;
+  font-size:1.6rem;
+  line-height:1.625
+}
+
+/* Formats all links to be blue-green with no underline */
+a{
+  color:#27968b;
+  text-decoration:none
+}
+
+/* Removes margins and padding from all lists */
+ol,ul {
+  margin:0;
+  padding:0
+}
+
+/* Formats header text */
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto Slab', sans-serif;
+	font-weight: 300;
+	line-height: 1.2;
+	margin: 0 0 24px;
+}
+
+/* Sets font size for h1 headers */
+h1 {
+	font-size: 30px;
+	font-size: 3rem;
+}
+
+/* Formats the big div which holds everything else, shrinking and centering it */
+.wrap {
+  max-width:1140px;
+  margin-left:auto;
+  margin-right:auto
+}
+
+/*
+This is the "clearfix hack" which prevents the problem of floating content overflowing its container.
+Without the hack, content such as a picture could "stick out" of its div and interfere with the positioning
+of things in the next div. With it, the container is expanded to contain the content, and there's no interference.
+*/
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Formats all buttons to be blue-green with white text and padding  */
+.button {
+  background-color:#27968b;
+  color:#fff;
+  padding:16px 24px;
+  display:inline-block
+}
+
+/* When a button is hovered over, change it to light gray with dark gray text */
+.button:hover {
+  background-color:#eeeee8;
+  color:#666664;
+}
+
+/* Hides text with the class screen-reader-text - it's meant to be read, not seen */
+.screen-reader-text {
+  height:1px;
+  overflow:hidden;
+  position:absolute!important;
+  width:1px;
+}
+
+/* Centers items with the "centered" class */
+.centered {
+	display: block;
+	margin: auto;
+}
+
+.column {
+  float:left;
+}
+
+/* Used to hide certain elements */
+.hidden, .hiddenNoExpand {display: none !important}
+
+/* Used for things like showing which view of a node is shown, which relation in a data browser is shown, etc. Not currently used but will almost certainly be brought back. */
+.selectedItem {
+	background-color:lightblue;
+}
+
+/* Formatting for the symbol that marks certain fields as "required" */
+.requiredMarker {
+	color:red;
+	font-weight:bold;
+	float:left;
+}
+
+/*******************************************************************************
+HEADER FORMATTING
+*******************************************************************************/
+
+/*
+Formats the whole header area - the part with the picture - making sure it's the right size
+and that the text and title box don't bump up against the left or right edge
+*/
+.site-header {
+  background-size:cover!important;
+  min-height:315px!important;
+}
+
+/*******************************************************************************
+Nav formatting
+*******************************************************************************/
+
+#historyDiv {
+  padding: 0px 10px;
+  background-color:white;
+  text-transform:capitalize!important;
+}
+
+/* Formats the whole nav div with a green background, bold uppercase text and a margin for space */
+.nav-secondary {
+  background-color:rgba(221,235,184,.86)!important;
+  text-transform:uppercase!important;
+  font-weight:700!important
+}
+
+/* Darkens the background color for the nav bar */
+.nav-secondary .wrap {
+	background-color: rgba(0,0,0,0.05);
+}
+
+/* Formats the navigation menu text */
+.genesis-nav-menu {
+  font-size:14px;
+  font-size:1.4rem;
+  line-height:1;
+}
+
+/* Makes items on the menu line up next to each other (inline) instead of stacking vertically */
+.genesis-nav-menu>.menu-item {
+  display:inline-block;
+}
+
+/* Puts space around the button names (which are <a> elements) in the menu, and sets their font color */
+.genesis-nav-menu a, .menuIcon {
+  display:block;
+  padding:20px 20px;
+  color:#1e6901!important
+}
+
+/*
+Initially positions submenu items off the page and makes them invisible.
+Sets them to fade in gradually when they become visible, and sets their width.
+*/
+.genesis-nav-menu .sub-menu {
+  left:-9999px;
+  opacity:0;
+  position:absolute;
+  -webkit-transition:opacity .4s ease-in-out;
+  -moz-transition:opacity .4s ease-in-out;
+  -ms-transition:opacity .4s ease-in-out;
+  -o-transition:opacity .4s ease-in-out;
+  transition:opacity .4s ease-in-out;
+  width:184px;
+}
+
+/* Sets the background color and font size for submenu items */
+.genesis-nav-menu .sub-menu a {
+  background-color:#fafafa;
+  font-size:12px;
+  font-size:1.2rem;
+}
+
+/* Uses margins to position submenu items above and to the left of where they would normally be (beside, rather than below, their parent) */
+.genesis-nav-menu .sub-menu .sub-menu {
+  margin:-44px 0 0 184px
+}
+
+/* When a menu item is hovered over, make any submenu items belonging to it visible */
+.genesis-nav-menu .menu-item:hover>.sub-menu {
+  left:auto;
+  opacity:1;
+  z-index:100;
+}
+
+/* If a menu button is hovered over or selected, give it a lighter background color */
+.genesis-nav-menu a:hover, .genesis-nav-menu .current-menu-item>a {
+  background-color:#ddebb8!important;
+}
+
+/* Submenu toggle buttons shouldn't be displayed (I think they're there for screen readers to interact with) */
+.sub-menu-toggle {
+  display:none;
+}
+
+/* Hides the description of list items whose normal display is an icon (again, the descriptions are for screen readers) */
+.fa-hidden {
+  position:absolute;
+  left:-10000px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+.sub-menu li {
+  list-style: none;
+}
+
+/*******************************************************************************
+Content formatting
+*******************************************************************************/
+
+/* Formats the content div, setting its background and font colors */
+.content-div {
+  background-color: #eee0cc;
+  color:black;
+}
+
+/*
+Adds margin and padding to items with class "content", which right now is just the main part of mission.html,
+but we should probably add this class to all headers
+*/
+.content {
+	margin-bottom: 32px;
+	padding: 32px;
+}
+
+.entry-article {
+  padding:32px;
+}
+
+/* Centers the text in the title of each content page */
+.entry-header {
+	border-bottom: 1px solid #eeeee8;
+	margin-bottom: 32px;
+	text-align: center;
+}
+
+/* Sets the color and weight of text in the titles of entries (like, for instance, the name of each person on the Staff page) */
+.entry-title {
+  color:#2f7d3c;
+  font-weight:400
+}
+
+/*
+Formats embed objects (currently used only for PDFs), making them as wide as the content wrapper
+and almost as tall as the page, and giving them a border.
+*/
+embed {
+  width: 100%;
+  height: 90%;
+  border: 3px solid gray;
+}
+
+/* Formatting specifically for picture lists (a format where each entry consists of a picture and some text) */
+
+/*
+Adds padding all the way around entries in a picture list
+(making sure there's blank space between the picture/text and the edge of the content div)
+*/
+.picListEntry {
+  padding: 20px;
+}
+
+/* Removes the margin from the top of paragraphs in a picture list
+(so the top of the text lines up with the top of the picture)
+*/
+.picListEntry p {
+  margin-top:0px;
+}
+
+/*
+Adds margins to the right and botton sides of picture list pictures
+(so the text flowing around the picture leaves some space around it)
+*/
+.picListPic {
+  margin:0px 20px 20px 0px;
+  float:left;
+}
+
+.picListPic img {
+  width: 200px;
+}
+
+.gridContainer {
+  display: grid;
+  justify-content: space-around;
+  margin:auto;
+}
+
+.gridContainer img {
+  width:100%;
+  object-fit:contain;
+}
+
+.priceTable {
+  border: 1px solid black;
+  border-collapse:collapse;
+}
+
+.priceTable td {
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.priceTable th {
+  border: 1px solid black;
+  background-color:#eee;
+  padding: 5px;
+}
+
+.editDiv img {
+  width: 100px;
+}
+
+.editItemDiv, .entryDiv, .JSONsection {
+  border: 1px solid black;
+}
+
+.editItemDiv {
+  background-color: #f1f1c1
+}
+
+.imageGallery {
+  background-color: white;
+  border: 3px solid black;
+  position: absolute;
+  z-index: 9;
+  max-width: 600px;
+  max-height: 200px;
+  overflow:scroll
+}
+
+.imageGallery img {
+  width: 100px;
+  margin: 10px;
+}
+
+.iconHolder {
+  width: 50px;
+  height: 35px;
+  float: left;
+}
+
+.editPicListDiv {
+  float: left;
+}
+
+.deletedData {
+	background-color: palevioletred;
+	fill: palevioletred !important;
+}
+
+/* Formatting used for all widgets imported from Harmony (but currently, that's just calendars) */
+
+/* Centers the widget on the page */
+.widget {
+  display:table;
+  margin:auto;
+}
+
+/* Makes the header white with a black border and sticky (so it stays at the top of the widget as you scroll) */
+.widgetHeader {
+	position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: white;
+  border: 2px solid black;
+}
+
+/* Sets the color and font size of tables that are in widgets */
+.widget table {
+	background-color: #EEE;
+	font-size: 13px;
+}
+
+/* Sets the border, color and padding of table header cells within widgets */
+.widget th {
+	border-right: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	padding: 3px 5px;
+	background-color: #999;
+	color: #FFF;
+}
+
+/* Sets the border, padding and alignment of regular table cells within widgets */
+.widget td {
+	border-right: 1px solid #BBB;
+	border-bottom: 1px solid #BBB;
+	padding: 3px 5px;
+	vertical-align: top;
+}
+
+.dragDiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid gray;
+}
+
+#editDiv p, #commentDiv p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.dragDivHeader {
+  cursor: move;
+  z-index: 10;
+  background-color: #f1f1f1;
+  border: 1px solid gray;
+}
+
+.commentDiv, .editDiv {
+  padding: 10px;
+  max-width: 900px;
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.indented {
+  margin-left: 20px !important;
+}
+
+.stripeTable tr:nth-child(odd) {
+  background-color: white;
+}
+
+.editDiv td {
+  min-width: 200px;
+}
+
+.editSection {
+  border: 2px solid black;
+}
+
+.editHeader {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.editSectionHeader {
+  font-size:16px;
+}
+
+.editSectionEntry {
+  font-size:12px;
+}
+
+.indent {
+  margin-left: 40px !important;
+}
+
+.JSONviewer, .showWhiteSpace {
+  white-space: pre-wrap;
+}
+
+
+/*******************************************************************************
+Footer formatting
+*******************************************************************************/
+
+/*
+Formats the top part of the footer (with the widgets in it) to have a very light gray
+background and padding at the top (so the widgets don't hit the top of the div)
+*/
+.footer-widgets {
+  background-color: #efefe9!important;
+  padding-top:32px
+}
+
+/* Sets the width of the three footer widgets */
+.footer-widgets-1, .footer-widgets-2, .footer-widgets-3 {
+  width:332px
+}
+
+/* Makes the first two footer widgets float left... */
+.footer-widgets-1, .footer-widgets-2 {
+  float:left
+}
+
+/* and the last one float right */
+.footer-widgets-3 {
+  float:right
+}
+
+/* Gives the first footer widget a margin, which pushes the second to the left a little bit */
+.footer-widgets-1 {
+  margin-right:36px
+}
+
+/* Gives all widgets in the footer a bottom margin (creating blank space after the widgets) and centers their text */
+.footer-widgets .widget {
+  margin-bottom:32px;
+  text-align:center
+}
+
+/* Sets the color and font of the bottom (green) part of the footer, adds padding and centers the text */
+.site-footer {
+	background-color: #27968b;
+	color: #fff;
+	font-size: 12px;
+	font-size: 1.2rem;
+	padding: 5px 5px 10px 5px;
+	text-align: center;
+}
+
+/* Removes the margin from the paragraph in the bottom (green) footer, making the footer shorter */
+.site-footer p {
+	margin-bottom: 0;
+}
